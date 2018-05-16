@@ -1,0 +1,4 @@
+set terminal svg
+set output "dist/example2.svg"
+plot "data/example2.dat", {C1} * x + {C0}
+exit

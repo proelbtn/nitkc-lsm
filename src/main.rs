@@ -1,13 +1,17 @@
+use std::env;
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader, Error};
 
 type Data = (f64, f64);
 type Matrix = Vec<Vec<f64>>;
 
-fn read_dat(filename: &str) -> Vec<Data> {
+fn read_dat(filename: &str) -> Result<Vec<Data>, Error> {
     let mut vec = Vec::new();
 
-    let file = File::open(filename).unwrap();
+    let file = match File::open(filename) {
+        Ok(v) => v,
+        Err(v) => return Err(v)
+    };
     let reader = BufReader::new(file);
 
     for line in reader.lines() {
@@ -18,7 +22,7 @@ fn read_dat(filename: &str) -> Vec<Data> {
         vec.push((data[0], data[1]))
     }
 
-    return vec;
+    return Ok(vec);
 }
 
 fn calc_neq(dim: usize, data: &Vec<Data>) -> (Matrix, Vec<f64>) {
@@ -69,6 +73,20 @@ fn calc_lsm(dim: usize, data: &Vec<Data>) -> Vec<f64> {
 } 
 
 fn main() {
-    let data = read_dat("data/example1.dat");
-    let result = calc_lsm(2, &data);
+    let program: String = env::args().next().unwrap();
+    let args: Vec<String> = env::args().skip(1).collect();
+
+    if args.len() != 2 {
+        println!("Usage:");
+        println!("  {} [dimention] [.dat file]", program);
+        std::process::exit(1);
+    }
+
+    let dimention = args[0].trim().parse::<usize>().unwrap() + 1;
+    let filename = &args[1];
+
+    let data = read_dat(filename).unwrap();
+    let result = calc_lsm(dimention, &data);
+
+    result.iter().for_each(|v| print!("{}\t", v));
 }

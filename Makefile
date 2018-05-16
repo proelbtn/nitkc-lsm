@@ -1,7 +1,7 @@
 .SILENT: 
 
 .PHONY: all
-all: create-dist build-program example1 example2 example3 example4
+all: create-dist build-program example1 example2 example3 example4 example5
 
 .PHONY: create-dist
 create-dist:
@@ -24,6 +24,9 @@ example3:
 
 example4:
 	bash scripts/shell/example4.sh
+
+example5:
+	bash scripts/shell/example5.sh
 
 .PHONY: clean
 clean:

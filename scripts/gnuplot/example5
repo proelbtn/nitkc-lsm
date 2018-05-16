@@ -1,4 +1,9 @@
-set terminal svg
+set terminal svg dynamic
+set grid
+set key bottom
 set output "dist/example5.svg"
-plot "data/example5.dat", {C11} * x + {C10}, {C22} * x ** 2 + {C21} * x + {C20}, {C44} * x ** 4 + {C43} * x ** 3 + {C42} * x ** 2 + {C41} * x + {C40}
+plot "data/example5.dat" title "example5.dat" pointsize 0.5, \
+    {C11} * x + {C10}, \
+    {C22} * x ** 2 + {C21} * x + {C20}, \
+    {C44} * x ** 4 + {C43} * x ** 3 + {C42} * x ** 2 + {C41} * x + {C40}
 exit

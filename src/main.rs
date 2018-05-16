@@ -88,5 +88,5 @@ fn main() {
     let data = read_dat(filename).unwrap();
     let result = calc_lsm(dimention, &data);
 
-    result.iter().for_each(|v| print!("{}\t", v));
+    result.iter().for_each(|v| print!("{:.3}\t", v));
 }

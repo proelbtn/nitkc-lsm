@@ -5,7 +5,7 @@ all: create-dist build-program example1 example2 example3 example4 example5
 
 .PHONY: create-dist
 create-dist:
-	mkdir -p dist
+	mkdir -p dist/example{1,2,3,4,5}
 
 .PHONY: build-program
 build-program:

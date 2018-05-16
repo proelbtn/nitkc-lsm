@@ -1,7 +1,15 @@
+set key bottom
+
 set terminal svg dynamic
 set grid
-set key bottom
-set output "dist/example1.svg"
-plot "data/example1.dat" title "example.dat" pointsize 0.5, \
+set output "dist/example1/graph.svg"
+plot "data/example1.dat" title "example1.dat" pointsize 0.5, \
     {C1} * x + {C0}
+
+set terminal latex
+unset grid
+set output "dist/example1/graph.tex"
+plot "data/example1.dat" title "example1.dat" pointsize 0.5, \
+    {C1} * x + {C0}
+
 exit

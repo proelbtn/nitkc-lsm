@@ -1,19 +1,10 @@
-set key bottom
-
-set terminal svg dynamic
+set terminal png size 1620,1080 font "Source Han Sans JP Normal,20"
 set grid
-set output "dist/example5/graph.svg"
-plot "data/example5.dat" title "example5.dat" pointsize 0.5, \
-    {C11} * x + {C10}, \
-    {C22} * x ** 2 + {C21} * x + {C20}, \
-    {C44} * x ** 4 + {C43} * x ** 3 + {C42} * x ** 2 + {C41} * x + {C40}
-
-set terminal latex
-unset grid
-set output "dist/example5/graph.tex"
-plot "data/example5.dat" title "example5.dat" pointsize 0.5, \
-    {C11} * x + {C10}, \
-    {C22} * x ** 2 + {C21} * x + {C20}, \
-    {C44} * x ** 4 + {C43} * x ** 3 + {C42} * x ** 2 + {C41} * x + {C40}
+set key bottom
+set output "dist/example5/graph.png"
+plot "data/example5.dat" title "example5.dat" pointsize 1.5, \
+    {C11} * x + {C10} linewidth 2, \
+    {C22} * x ** 2 + {C21} * x + {C20} linewidth 2, \
+    {C44} * x ** 4 + {C43} * x ** 3 + {C42} * x ** 2 + {C41} * x + {C40} linewidth 2
 
 exit

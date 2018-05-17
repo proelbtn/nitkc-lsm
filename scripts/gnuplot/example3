@@ -1,15 +1,7 @@
-set key bottom
-
-set terminal svg dynamic
+set terminal png size 1620,1080 font "Source Han Sans JP Normal,20"
 set grid
-set output "dist/example3/graph.svg"
-plot "data/example3.dat" title "example3.dat" pointsize 0.5, \
-    {C1} * x + {C0}
-
-set terminal latex
-unset grid
-set output "dist/example3/graph.tex"
-plot "data/example3.dat" title "example3.dat" pointsize 0.5, \
-    {C1} * x + {C0}
-
+set key bottom
+set output "dist/example3/graph.png"
+plot "data/example3.dat" title "example3.dat" pointsize 1.5, \
+    {C1} * x + {C0} linewidth 2
 exit
